@@ -1,16 +1,15 @@
-using System;
-using Microsoft.Maui;
-using Microsoft.Maui.Hosting;
-
 namespace BugReproduction;
 
-class Program : MauiApplication
+internal class Program : MauiApplication
 {
-    protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
-
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
         var app = new Program();
         app.Run(args);
+    }
+
+    protected override MauiApp CreateMauiApp()
+    {
+        return MauiProgram.CreateMauiApp();
     }
 }
