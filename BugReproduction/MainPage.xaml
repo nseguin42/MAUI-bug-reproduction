@@ -2,6 +2,54 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="using:BugReproduction"
              x:Class="BugReproduction.MainPage">
+
+  <ContentPage.Resources>
+    <local:StringIsNullOrEmptyConverter x:Key="StringIsNullOrEmptyConverter" />
+  </ContentPage.Resources>
+
+  <VerticalStackLayout>
+
+    <SearchBar x:Name="SearchBar">
+      <SearchBar.Triggers>
+        <DataTrigger
+          TargetType="SearchBar"
+          Binding="{Binding Path=Text, Source={x:Reference SearchBar}, Converter = {StaticResource StringIsNullOrEmptyConverter}}"
+          Value="True">
+          <Setter Property="BackgroundColor" Value="Red" />
+        </DataTrigger>
+
+        <DataTrigger
+          TargetType="SearchBar"
+          Binding="{Binding Path=Text, Source={x:Reference SearchBar}, Converter = {StaticResource StringIsNullOrEmptyConverter}}"
+          Value="False">
+          <Setter Property="BackgroundColor" Value="Green" />
+        </DataTrigger>
+
+      </SearchBar.Triggers>
+    </SearchBar>
+
+    <Entry x:Name="Entry">
+      <Entry.Triggers>
+        <DataTrigger
+          TargetType="Entry"
+          Binding="{Binding Path=Text, Source={x:Reference Entry}, Converter = {StaticResource StringIsNullOrEmptyConverter}}"
+          Value="True">
+          <Setter Property="BackgroundColor" Value="Red" />
+        </DataTrigger>
+
+        <DataTrigger
+          TargetType="Entry"
+          Binding="{Binding Path=Text, Source={x:Reference Entry}, Converter = {StaticResource StringIsNullOrEmptyConverter}}"
+          Value="False">
+          <Setter Property="BackgroundColor" Value="Green" />
+        </DataTrigger>
+
+      </Entry.Triggers>
+    </Entry>
+
+
+  </VerticalStackLayout>
 
 </ContentPage>
